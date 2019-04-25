@@ -22,6 +22,9 @@ def getNTPTime(host):
         return t
         
 #written by me
+#SECRET ENCRYPTION GRAPH (DO NOT SHARE)
+        def keyGraph(x):
+          return int(145.134997*x**2-438.204852*x**5)
 def isInt(in1):
         try:
             in1 = int(in1)
@@ -63,7 +66,7 @@ if __name__ == "__main__":
               modifierVal = (60*60*24*365)
               tl.pop(tl.index('y'))
               unitUsed = True
-              
+        #Restricts to one "modifier unit"
         if unitUsed == False:
                 print("Incorrect syntax. Use units (d,h,w,m,y)")
                 time.sleep(2)
@@ -75,15 +78,12 @@ if __name__ == "__main__":
         
 
         
-        #finalizes serial key before encryption. 
+        #finalizes serial key before encryption. Gets the expiration date
         msg = str(tl+curtime)
         print("Creating serial...")
         
-        import random
-        #SECRET ENCRYPTION GRAPH (DO NOT SHARE)
-        def keyGraph(x):
-          return int(145.134997*x**2-438.204852*x**5)
         yValue = str(keyGraph(int(msg)))
+        #Gets last 20 characters
         yValue = yValue[len(str(yValue))-20:]
         #Serial Key: Expiration second timestamp-Corresponding Y value
         print("Current time: " + str(curtime))
